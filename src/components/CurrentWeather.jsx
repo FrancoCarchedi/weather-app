@@ -3,7 +3,7 @@ import { getDate } from "../helpers/getDate";
 const CurrentWeather = ({temp, weather, city, img}) => {
 
   return (
-    <div className="w-1/3 h-full bg-gradient-to-t from-slate-200 via-slate-300 to-gray-400 flex flex-col justify-evenly self-center rounded-lg mx-5 text-slate-800 shadow shadow-slate-500/30">
+    <div className="w-1/3 h-full bg-gradient-to-b from-slate-100 to-slate-200 flex flex-col justify-evenly self-center rounded-lg mx-5 text-slate-800 shadow shadow-slate-500/30">
       {/* <div className="flex flex-row justify-around">
         <a className="py-2 px-4 bg-slate-500 text-stone-200 place-self-center font-medium text-base drop-shadow-md rounded" href="#a">Search for places</a>
         <i className="bx bx-sm bx-current-location bg-slate-500 text-stone-200 p-2.5 drop-shadow-md rounded-full"></i>
