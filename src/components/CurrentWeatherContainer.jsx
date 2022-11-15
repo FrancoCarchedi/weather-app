@@ -1,37 +1,19 @@
-import { useState, useEffect } from "react"
-import axios from 'axios'
-import CurrentWeather from "./CurrentWeather"
+import { useWeather } from "../context/WeatherContext";
+import CurrentWeather from "./CurrentWeather";
 
-const CurrentWeatherContainer = ({latitude, longitude}) => {
+const CurrentWeatherContainer = () => {
 
-  const [weather, setWeather] = useState({
-    data: [],
-    loading: true
-  })
-
-  useEffect(() => {
-    if (latitude && longitude) {
-      axios({
-        method: 'get',
-        url: `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
-      })
-      .then( response => {
-        setWeather({data: response.data, loading: false})
-      })
-      .catch( err => {
-        console.log(err)
-      })
-    }
-  }, [latitude, longitude])
+  const weatherContext = useWeather()
+  console.log(weatherContext)
 
   return (
-    !weather.loading?
+    !weatherContext.weather.loading?
     <CurrentWeather 
-      temp={Math.round(weather.data.main.temp)} 
-      weather={weather.data.weather[0].main} 
-      city={weather.data.name}
-      img={`https://openweathermap.org/img/wn/${weather.data.weather[0].icon}@4x.png`}
-      dt={weather.data.dt}
+      temp={Math.round(weatherContext.weather.data.main.temp)} 
+      weather={weatherContext.weather.data.weather[0].main} 
+      city={weatherContext.weather.data.name}
+      img={`https://openweathermap.org/img/wn/${weatherContext.weather.data.weather[0].icon}@4x.png`}
+      dt={weatherContext.weather.data.dt}
     /> :
     <CurrentWeather 
       temp="0" 
