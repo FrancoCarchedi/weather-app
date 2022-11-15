@@ -1,26 +1,28 @@
+import dateFormatter from "../helpers/dateFormatter";
 import { getDate } from "../helpers/getDate";
 
-const CurrentWeather = ({temp, weather, city, img}) => {
+const CurrentWeather = ({temp, weather, city, img, dt}) => {
 
   return (
-    <div className="w-1/3 h-full bg-gradient-to-b from-slate-100 to-slate-200 flex flex-col justify-evenly self-center rounded-lg mx-5 text-slate-800 shadow shadow-slate-500/30">
-      {/* <div className="flex flex-row justify-around">
-        <a className="py-2 px-4 bg-slate-500 text-stone-200 place-self-center font-medium text-base drop-shadow-md rounded" href="#a">Search for places</a>
-        <i className="bx bx-sm bx-current-location bg-slate-500 text-stone-200 p-2.5 drop-shadow-md rounded-full"></i>
-      </div> */}
-      <div className="flex flex-row justify-center space-x-2 text-xl">
+    <div className="h-full flex flex-col justify-between self-center shadow shadow-slate-500/30 text-white-200 bg-background-800 text-center py-10">
+      <div className="flex flex-row justify-around">
+        <button className="py-2 px-4 bg-white-400 hover:bg-white-500 text-stone-200 place-self-center font-medium text-base drop-shadow-md rounded" href="#a">Search for places</button>
+        <button className="w-10 h-10">
+          <i className="p-2 bx bx-sm bx-current-location bg-white-400 hover:bg-white-500 text-stone-200 drop-shadow-md rounded-full"></i>
+        </button>
+      </div>
+      <img className="w-40 self-center" src={img} alt=""/>
+      <span className="text-8xl font-medium">{temp}<span className="text-4xl text-white-300">°C</span></span>
+      <h2 className="text-4xl font-bold text-white-300">{weather}</h2>
+      <div className="flex flex-row justify-center text-white-300">
+        <p className="">Today</p>
+        <p className="mx-4">·</p>
+        <p className="">{dateFormatter(dt)}</p>
+      </div>
+      <div className="flex flex-row justify-center space-x-2 text-white-300">
         <i className="bx bxs-map self-center"></i>
         <p>{city}</p>
       </div>
-      <img className="w-40 self-center" src={img} alt=""/>
-      <h1 className=" text-5xl font-medium text-center">{temp}</h1>
-      <h2 className=" text-4xl font-bold text-center">{weather}</h2>
-      <div className="flex flex-row justify-center">
-        <p className="">Today</p>
-        <p className=" mx-4">·</p>
-        <p className="">{getDate()}</p>
-      </div>
-      
     </div>
   )
 }

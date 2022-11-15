@@ -7,7 +7,7 @@ import firstLetterMayus from "../helpers/firstLetterMayus"
 export const DaysContainer = ({latitude, longitude}) => {
 
   const [forecast, setForecast] = useState({
-    data: [],
+    data: new Array(5),
     loading: true
   })
 
@@ -19,6 +19,7 @@ export const DaysContainer = ({latitude, longitude}) => {
         url: `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=3c7d1a58464a7ed2b7feb2bd435b00cd&exclude=current,minutely,hourly`
       })
       .then( response => {
+        console.log(forecast.data)
         setForecast({data: response.data.daily, loading: false});
       })
       .catch( err => {
@@ -29,12 +30,14 @@ export const DaysContainer = ({latitude, longitude}) => {
   
 
   return (
-    <div className="grid grid-cols-8 gap-2">
+    <div className="flex justify-between">
       { !forecast.loading?
-      forecast.data.map( (w) => 
+      forecast.data.map( (w, index) => 
+      index < 5 &&
       <Day key={w.dt} date={firstLetterMayus(dateFormatter(w.dt))} min_temp={Math.round(w.temp.min)} max_temp={Math.round(w.temp.max)} weather img={`https://openweathermap.org/img/wn/${w.weather[0].icon}@2x.png`}/> )
       :
-      <Day/> }
+      false
+      }
     </div>
   )
 }

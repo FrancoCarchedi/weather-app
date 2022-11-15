@@ -9,6 +9,13 @@
   padding: 0;
 }
 
+#root {
+  background-color: #0f172a;
+  /* padding: 2rem 0 2rem 0; */
+}
+
 .bgClouds {
   background-image: url(../src/assets/Cloud-background.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }

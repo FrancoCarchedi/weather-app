@@ -13,7 +13,7 @@ const CurrentWeatherContainer = ({latitude, longitude}) => {
     if (latitude && longitude) {
       axios({
         method: 'get',
-        url: `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
+        url: `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
       })
       .then( response => {
         setWeather({data: response.data, loading: false})
@@ -27,15 +27,17 @@ const CurrentWeatherContainer = ({latitude, longitude}) => {
   return (
     !weather.loading?
     <CurrentWeather 
-      temp={Math.round(weather.data.main.temp - 273.15) + " C°"} 
+      temp={Math.round(weather.data.main.temp)} 
       weather={weather.data.weather[0].main} 
       city={weather.data.name}
       img={`https://openweathermap.org/img/wn/${weather.data.weather[0].icon}@4x.png`}
+      dt={weather.data.dt}
     /> :
     <CurrentWeather 
-      temp="Cargando" 
-      weather="Cargando" 
-      city="Cargando" 
+      temp="0" 
+      weather="" 
+      city="Locating..."
+      dt=""
     />
   )
 }
