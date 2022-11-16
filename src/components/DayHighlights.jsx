@@ -1,5 +1,5 @@
 
-export const DayHighlights = () => {
+const DayHighlights = () => {
 
     return (
       <div className="flex">
@@ -14,3 +14,5 @@ export const DayHighlights = () => {
       </div>
     )
 }
+
+export default DayHighlights

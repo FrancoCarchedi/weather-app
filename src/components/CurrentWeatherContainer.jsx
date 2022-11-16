@@ -12,6 +12,7 @@ const CurrentWeatherContainer = () => {
       temp={Math.round(weatherContext.weather.data.main.temp)} 
       weather={weatherContext.weather.data.weather[0].main} 
       city={weatherContext.weather.data.name}
+      units={weatherContext.units.symbol}
       img={`https://openweathermap.org/img/wn/${weatherContext.weather.data.weather[0].icon}@4x.png`}
       dt={weatherContext.weather.data.dt}
     /> :

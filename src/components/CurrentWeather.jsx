@@ -1,7 +1,6 @@
 import dateFormatter from "../helpers/dateFormatter";
-import { getDate } from "../helpers/getDate";
 
-const CurrentWeather = ({temp, weather, city, img, dt}) => {
+const CurrentWeather = ({temp, weather, city, units, img, dt}) => {
 
   return (
     <div className="h-full flex flex-col justify-between self-center shadow shadow-slate-500/30 text-white-200 bg-background-800 text-center py-10">
@@ -12,7 +11,7 @@ const CurrentWeather = ({temp, weather, city, img, dt}) => {
         </button>
       </div>
       <img className="w-40 self-center" src={img} alt=""/>
-      <span className="text-8xl font-medium">{temp}<span className="text-4xl text-white-300">°C</span></span>
+      <span className="text-8xl font-medium">{temp}<span className="text-4xl text-white-300">{units}</span></span>
       <h2 className="text-4xl font-bold text-white-300">{weather}</h2>
       <div className="flex flex-row justify-center text-white-300">
         <p className="">Today</p>

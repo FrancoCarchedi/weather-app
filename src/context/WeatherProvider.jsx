@@ -12,7 +12,7 @@ const WeatherProvider = ({children}) => {
 
   const [units, setUnits] = useState({
     unit: "metric",
-    symbol: "C°"
+    symbol: "°C"
   })
 
   const [weather, setWeather] = useState({
@@ -64,10 +64,10 @@ const WeatherProvider = ({children}) => {
 
   const unitsHandler = () => {
     if (units.unit === "metric") {
-      setUnits({unit: "imperial", symbol: "F°"})
+      setUnits({unit: "imperial", symbol: "°F"})
     }
     else {
-      setUnits({unit: "metric", symbol: "C°"})
+      setUnits({unit: "metric", symbol: "°C"})
     }
   }
 
