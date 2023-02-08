@@ -5,32 +5,53 @@ import { getCurrentLocation } from "../helpers/getCurrentLocation";
 
 const WeatherProvider = ({children}) => {
 
+  //Location
   const [location, setLocation] = useState({
     latitude: "",
     longitude: ""
   })
 
+  //Cities
+  const [cities, setCities] = useState([])
+
+  //Units for handle Celsius or Farenheit
   const [units, setUnits] = useState({
     unit: "metric",
     symbol: "°C"
   })
 
+  //Weather data
   const [weather, setWeather] = useState({
     data: [],
     loading: true
   })
 
+  //Forecast Data
   const [forecast, setForecast] = useState({
     data: new Array(5),
     loading: true
   })
 
-  //Obtener localización
-  useEffect(() => {
+  //Sidebar state handler
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleCurrentLocation = () => {
     getCurrentLocation().then( ubication => setLocation({latitude: ubication[0], longitude: ubication[1]}) )
+  }
+
+  //Get location at load page
+  useEffect(() => {
+    handleCurrentLocation();
   }, [])
 
-  //Data fetching de Weather
+  //Set location
+  const handleLocation = (lat, long) => {
+    setLocation({latitude:lat, longitude:long})
+  }
+
+  
+
+  //Data fetching of Weather
   useEffect(() => {
     if (location.latitude && location.longitude !== "")
     axios({
@@ -71,8 +92,22 @@ const WeatherProvider = ({children}) => {
     }
   }
 
+  const citySearch = (cityName) => {
+    axios({
+      method: 'get',
+      // url: `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
+      url: `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
+    })
+    .then( response => {
+      setCities(response.data);
+    })
+    .catch( err => {
+      console.log(err)
+    })
+  }
+
   return (
-    <WeatherContext.Provider value={{ weather, forecast, units, unitsHandler }}>
+    <WeatherContext.Provider value={{ weather, forecast, units, unitsHandler, cities, citySearch, handleLocation, isOpen, setIsOpen, handleCurrentLocation }}>
       { children }  
     </WeatherContext.Provider>
   )

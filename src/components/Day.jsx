@@ -1,7 +1,7 @@
 
 export const Day = ({date, max_temp, min_temp, units, img}) => {
   return (
-    <div className="rounded flex flex-col justify-center items-center bg-background-800 px-5">
+    <div className="rounded flex flex-col items-center bg-background-800">
       <h1 className="font-medium text-base text-center my-4">{date}</h1>
       <img className="w-14 m-0" src={img} alt=""/>
       <div className="flex flex-row my-4">

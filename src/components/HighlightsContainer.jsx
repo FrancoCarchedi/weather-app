@@ -1,4 +1,5 @@
 import { useWeather } from "../context/WeatherContext";
+import degToCompass from "../helpers/degToCompass";
 import DayHighlights from "./DayHighlights";
 
 const HighlightsContainer = () => {
@@ -6,10 +7,17 @@ const HighlightsContainer = () => {
   const weatherContext = useWeather()
 
   return (
-    <div className="">
-      <h1 className="mb-5 text-2xl font-bold">Today's Highlights</h1>
-      <DayHighlights/>
-    </div>
+    !weatherContext.weather.loading?
+    <DayHighlights 
+      windSpeed={weatherContext.weather.data.wind.speed}
+      windUnit={weatherContext.units.unit === "metric"? "m/s" : "mph"}
+      windDir={weatherContext.weather.data.wind.deg}
+      windDeg={degToCompass(weatherContext.weather.data.wind.deg)}
+      pressure={weatherContext.weather.data.main.pressure}
+      visibility={weatherContext.weather.data.visibility}
+      humidity={weatherContext.weather.data.main.humidity}
+    /> :
+    false
   )
 }
 

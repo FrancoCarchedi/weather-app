@@ -15,7 +15,7 @@
 }
 
 .bgClouds {
-  background-image: url(../src/assets/Cloud-background.png);
+  /* background-image: url(../src/assets/Cloud-background.png); */
   background-size: contain;
   background-repeat: no-repeat;
 }

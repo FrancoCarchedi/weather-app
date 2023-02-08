@@ -4,7 +4,6 @@ import CurrentWeather from "./CurrentWeather";
 const CurrentWeatherContainer = () => {
 
   const weatherContext = useWeather()
-  console.log(weatherContext)
 
   return (
     !weatherContext.weather.loading?
@@ -13,15 +12,17 @@ const CurrentWeatherContainer = () => {
       weather={weatherContext.weather.data.weather[0].main} 
       city={weatherContext.weather.data.name}
       units={weatherContext.units.symbol}
-      img={`https://openweathermap.org/img/wn/${weatherContext.weather.data.weather[0].icon}@4x.png`}
+      // img={`https://openweathermap.org/img/wn/${weatherContext.weather.data.weather[0].icon}@4x.png`}
+      img={`../assets/${weatherContext.weather.data.weather[0].icon}.png`}
       dt={weatherContext.weather.data.dt}
     /> :
-    <CurrentWeather 
-      temp="0" 
-      weather="" 
-      city="Locating..."
-      dt=""
-    />
+    // <CurrentWeather 
+    //   temp="0" 
+    //   weather="" 
+    //   city="Locating..."
+    //   dt=""
+    // />
+    false
   )
 }
 
