@@ -12,14 +12,14 @@ const CitySearch = () => {
   }
 
   return (
-    <div className={`${weatherContext.isOpen? "absolute" : "hidden"} transition-all duration-500 ease-in-out left-0 top-0 bg-background-800 w-full lg:w-4/12 h-screen p-4`} style={{ transform: weatherContext.isOpen ? "translateX(0)" : "translateX(-100%)" }}>
+    <div className={`${weatherContext.isOpen? "absolute" : "hidden"} left-0 top-0 bg-background-800 w-full lg:w-4/12 h-screen p-4`} style={{ transform: weatherContext.isOpen ? "translateX(0)" : "translateX(-100%)" }}>
       <div className="flex flex-col">
         <button className="my-4 mr-12 place-self-end" onClick={() => weatherContext.setIsOpen(false)}>
           <span className="material-icons">close</span>
         </button>
 
         <div className="flex gap-4 justify-center m-12">
-          <input type="text" name="city" id="" placeholder="Search location" onChange={handleInputSearch} className="bg-transparent border p-3.5 w-full"/>
+          <input type="text" name="city" id="" placeholder="Search location" autoComplete="off" onChange={handleInputSearch} className="bg-transparent border p-3.5 w-full"/>
           <button className="bg-tahiti py-2 px-4" onClick={() => weatherContext.citySearch(searchValue)}>Search</button>
         </div>
 

@@ -56,7 +56,7 @@ const WeatherProvider = ({children}) => {
     if (location.latitude && location.longitude !== "")
     axios({
       method: 'get',
-      url: `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=${units.unit}&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
+      url: `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=${units.unit}&appid=${process.env.REACT_APP_APIKEY}`
     })
     .then( response => {
       setWeather({data: response.data, loading: false})
@@ -71,8 +71,8 @@ const WeatherProvider = ({children}) => {
     if (location.latitude && location.longitude !== "") {
       axios({
         method: 'get',
-        // url: `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
-        url: `https://api.openweathermap.org/data/2.5/onecall?lat=${location.latitude}&lon=${location.longitude}&units=${units.unit}&appid=3c7d1a58464a7ed2b7feb2bd435b00cd&exclude=current,minutely,hourly`
+        apikey: process.env.REACT_APP_APIKEY,
+        url: `https://api.openweathermap.org/data/2.5/onecall?lat=${location.latitude}&lon=${location.longitude}&units=${units.unit}&appid=${process.env.REACT_APP_APIKEY}&exclude=current,minutely,hourly`
       })
       .then( response => {
         setForecast({data: response.data.daily, loading: false});
@@ -95,8 +95,8 @@ const WeatherProvider = ({children}) => {
   const citySearch = (cityName) => {
     axios({
       method: 'get',
-      // url: `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
-      url: `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=3c7d1a58464a7ed2b7feb2bd435b00cd`
+      apikey: process.env.REACT_APP_APIKEY,
+      url: `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${process.env.REACT_APP_APIKEY}`
     })
     .then( response => {
       setCities(response.data);
