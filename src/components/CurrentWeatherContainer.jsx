@@ -16,13 +16,12 @@ const CurrentWeatherContainer = () => {
       img={`../assets/${weatherContext.weather.data.weather[0].icon}.png`}
       dt={weatherContext.weather.data.dt}
     /> :
-    // <CurrentWeather 
-    //   temp="0" 
-    //   weather="" 
-    //   city="Locating..."
-    //   dt=""
-    // />
-    false
+    <CurrentWeather 
+      temp="0" 
+      weather="Not available" 
+      city="Locating..."
+      dt=""
+    />
   )
 }
 

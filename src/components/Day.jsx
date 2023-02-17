@@ -1,5 +1,5 @@
 
-export const Day = ({date, max_temp, min_temp, units, img}) => {
+export const Day = ({date="", max_temp="0", min_temp="0", units="°C", img}) => {
   return (
     <div className="rounded flex flex-col items-center bg-background-800">
       <h1 className="font-medium text-base text-center my-4">{date}</h1>

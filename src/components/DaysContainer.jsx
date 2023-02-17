@@ -11,7 +11,7 @@ export const DaysContainer = () => {
     <div className="grid grid-cols-2 place-content-center md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-8 md:gap-2 lg:gap-4 px-8 lg:px-0">
       { !weatherContext.forecast.loading?
       weatherContext.forecast.data.map( (w, index) => 
-      index < 5 &&
+      index < 6 && index > 0 ?
       <Day 
           key={w.dt} 
           date={firstLetterMayus(dateFormatter(w.dt))} 
@@ -19,7 +19,7 @@ export const DaysContainer = () => {
           max_temp={Math.round(w.temp.max)} 
           units={weatherContext.units.symbol} 
           img={`../assets/${w.weather[0].icon}.png`}
-      /> )
+      /> : false )
       :
       false
       }
